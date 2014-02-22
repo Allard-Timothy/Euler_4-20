@@ -26,14 +26,12 @@ def find_solution(step):
 	for num in xrange(step,999999999,step):
 		if all(num % n == 0 for n in check_list):
 			return num
-	return None
 
-if __name__ == '__main__':
-	solution = find_solution(20)
-	if solution is None:
-		print "No answer found"
-	else:
-		print "found an answer", solution
+solution = find_solution(20)
+if solution is None:
+    print "None"
+else:
+    print  solution
 
 #############################################################
 
@@ -46,9 +44,7 @@ def main():
     sum1 += i
     sum2 += pow(i,2)
   return pow(sum1,2) - sum2
- 
-if '__main__' == __name__:
-  print main()
+ print pow(sum1,2)-sum2
 
 #############################################################
 
@@ -78,7 +74,7 @@ def prime_list(n):
 #Proj. Euler 8
 
 
-numbers = '''73167176531330624919225119674426574742355349194934
+numbers = '73167176531330624919225119674426574742355349194934
 96983520312774506326239578318016984801869478851843
 85861560789112949495459501737958331952853208805511
 12540698747158523863050715693290963295227443043557
@@ -97,7 +93,7 @@ numbers = '''73167176531330624919225119674426574742355349194934
 07198403850962455444362981230987879927244284909188
 84580156166097919133875499200524063689912560717606
 05886116467109405077541002256983155200055935729725
-71636269561882670428252483600823257530420752963450'''
+71636269561882670428252483600823257530420752963450'
 
 numstring = numbers.strip().replace('\n','')
 greatest_product = 0
@@ -117,14 +113,7 @@ print greatest_product
 
 #Proj. Euler 9
 
-'''Euclids formula for generating Pythagorean Triplets
-
-a = m^2 - n^2
-b = 2mn
-c = m^2 + n^2
-
-where m > n '''
-
+Euclid
 
 for m in range(25):
 	for n in range(m+1):
@@ -147,16 +136,11 @@ for m in range(25):
 
 #Proj. Euler 10
 
-sieve = [True] * 2000000
-
-def is_mark(sieve, x):
-	for i in xrange(x + x, len(sieve), x):
-		sieve[i] = False
-
-for x in xrange(2, int(len(sieve) ** .05) + 1):
-	if sieve[x]: is_mark(sieve,x)
-
-print sum(i for i in xrange(2, len(sieve)) if sieve[1])
+ def Prime_list():
+        n=0
+        for x in Primes(2,2000000):
+            n+=x
+        return n
 
 
 ##########################################################
@@ -189,22 +173,22 @@ nums = (
 import math, sys
 
 def prime_sieve(limit):
-    # Mark everything prime to start
+   
     primes = [1 for x in xrange(limit)]
     primes[0] = 0
     primes[1] = 0
 
-    # Only need to sieve up to sqrt(limit)
-    imax = int(math.sqrt(limit) + 1)
+   
+    int_max = int(math.sqrt(limit) + 1)
 
     i = 2
-    while (i < imax):
+    while (i < int_max):
         j = i + i
         while j < limit:
             primes[j] = 0
             j += i
 
-        # Move i to next prime
+      
         while True:
            i += 1
            if primes[i] == 1:
@@ -220,47 +204,19 @@ print(sum(i for i in xrange(len(s)) if s[i] == 1))
 
 #Proj. Euler 12
 
-import time
- 
-def num_divisors(n):
-    if n % 2 == 0: n = n/2
-    divisors = 1
-    count = 0
-    while n % 2 == 0:
-        count += 1
-        n = n/2
-    divisors = divisors * (count + 1)
-    p = 3
-    while n != 1:
-        count = 0
-        while n % p == 0:
-            count += 1
-            n = n/p
-        divisors = divisors * (count + 1)
-        p += 2
-    return divisors
- 
-def find_triangular_index(factor_limit):
-    n = 1
-    lnum, rnum = num_divisors(n), num_divisors(n+1)
-    while lnum * rnum < 500:
-        n += 1
-        lnum, rnum = rnum, num_divisors(n+1)
-    return n
- 
-start = time.time()
-index = find_triangular_index(500)
-triangle = (index * (index + 1)) / 2
-elapsed = (time.time() - start)
- 
-print "result %s returned in %s seconds." % (triangle,elapsed)
+import prime
+
+for i in xrange(1, 1000000000):
+    n = i * (i+1) / 2
+    if prime.num_factors(n) > 500:
+        print n
+    break
 
 #############################################
 
 #Proj. Euler 13
-import time
  
-start = time.time()
+
  
 str = "37107287533902102798797998220837590246510135740250\n\
 46376937677490009712648124896970078050417018260538\n\
@@ -369,19 +325,16 @@ str = "37107287533902102798797998220837590246510135740250\n\
 str = [int(i) for i in str.split("\n")]
 S = sum(str)
  
-elapsed = (time.time() - start)
-print "found %s in %s seconds" % (S,elapsed)
+
+print S
+
 
 #################################################
 
 #Proj. Euler 14
 
-
-import time
  
-start = time.time()
- 
-def collatz(n, count=1):
+def coll(n, count=1):
     while n > 1:
         count += 1
         if n % 2 == 0:
@@ -392,22 +345,23 @@ def collatz(n, count=1):
  
 max = [0,0]
 for i in range(1000000):
-    c = collatz(i)
-    if c > max[0]:
-        max[0] = c
+    n = coll(i)
+    if n > max[0]:
+        max[0] = n
         max[1] = i
  
-elapsed = (time.time() - start)
-print "found %s at length %s in %s seconds" % (max[1],max[0],elapsed)
+
+print  max[1]
+print max[0]
+
 
 
 ##########################################################
 
 #Proj. Euler 15
 
-import time
  
-def route_num(cube_size):
+def route(cube_size):
     L = [1] * cube_size
     for i in range(cube_size):
         for j in range(i):
@@ -415,140 +369,66 @@ def route_num(cube_size):
         L[i] = 2 * L[i - 1]
     return L[cube_size - 1]
  
-start = time.time()
-n = route_num(20)
-elapsed = (time.time() - start)
-print "%s found in %s seconds" % (n,elapsed)
+n = route(20)
+
+print n
 
 
 #########################################################
 
 #Proj. Euler 16
+ 
+n = 2^1000
+s = sum(n.digits())
 
-import time
- 
-start = time.time()
-a = 2^1000
-s = sum(a.digits())
-elapsed = time.time() - start
- 
-print "%s found in %s seconds" % (s,elapsed)
+print s
 
 
 ###########################################################
 
 #Proj. Euler 17
 
-import time
- 
-start = time.time()
- 
-S = [0,3,3,5,4,4,3,5,5,4,3,6,6,8,8,7,7,9,8,8]
-D = [0,3,6,6,5,5,5,7,6,6]
-H = 7
-T = 8
- 
-total = 0
-for i in range(1,1000):
-    c = i % 10 # singles digit
-    b = ((i % 100) - c) / 10 # tens digit
-    a = ((i % 1000) - (b * 10) - c) / 100 # hundreds digit
- 
-    if a != 0:
-        total += S[a] + H # "S[a] hundred
-        if b != 0 or c != 0: total += 3 # "and"
-    if b == 0 or b == 1: total += S[b * 10 + c]
-    else: total += D[b] + S[c]
- 
-total += S[1] + T
-elapsed = time.time() - start
- 
-print "%s found in %s seconds" % (total,elapsed)
+Coming soon...
 
 
 #####################################################
 
 #Proj. Euler 18
 
-import time
- 
-# read file
 rows = []
 FILE = open("triangle", "r")
-for blob in FILE: rows.append([int(i) for i in blob.split(" ")])
- 
-start = time.time()
+for tri in FILE: rows.append([int(i) for i in tri.split(" ")])
+
  
 for i,j in [(i,j) for i in range(len(rows)-2,-1,-1) for j in range(i+1)]:
     rows[i][j] +=  max([rows[i+1][j],rows[i+1][j+1]])
  
-elapsed = time.time() - start
+
  
-print "%s found in %s seconds" % (rows[0][0],elapsed)
+print rows[0][0]
 
 
 ######################################################
 
 #Proj. Euler 19
 
-import time
-from math import floor
- 
-"""
-Gaussian algorithm to determine day of week
-"""
-def day_of_week(year, month, day):
-    """
-    w = (d+floor(2.6*m-0.2)+y+floor(y/4)+floor(c/4)-2*c) mod 7
- 
-    Y = year - 1 for January or February
-    Y = year for other months
-    d = day (1 to 31)
-    m = shifted month (March = 1, February = 12)
-    y = last two digits of Y
-    c = first two digits of Y
-    w = day of week (Sunday = 0, Saturday = 6)
-    """
- 
-    d = day
-    m = (month - 3) % 12 + 1
-    if m & d == 10: Y = year - 1
-    else: Y = year
-    y = Y % 100
-    c = (Y - (Y % 100)) / 100
- 
-    w = (d + floor(2.6 * m - 0.2) + y + floor(y/4) + floor(c/4) - 2*c) % 7
- 
-    return int(w)
- 
-"""
-Compute the number of months starting on a given day of the week in a century
-"""
-def months_start_range(day,year_start,year_end):
-    total = 0
-    for year in range(year_start, year_end + 1):
-        for month in range(1,13):
-            if day_of_week(year, month, 1) == day: total += 1
-    return total
- 
-start = time.time()
- 
-total = months_start_range(0,1901,2000)
- 
-elapsed = time.time() - start
- 
-print("%s found in %s seconds") % (total,elapsed)
+import datetime
+
+sundays = 0
+for year in xrange(1901, 2001):
+    for month in xrange(1, 13):
+        d = datetime.date(year, month, 1)
+        if d.weekday() == 6:
+            sundays = sundays + 1
+
+print sundays
 
 ########################################################
 
 #Proj. Euler 20
 
-import time
- 
-start = time.time()
- 
+
 s = sum(factorial(100).digits())
  
-elapsed = time.time() - start
  
-print "Solution %s found after %s seconds" % (s,elapsed)
+print s
